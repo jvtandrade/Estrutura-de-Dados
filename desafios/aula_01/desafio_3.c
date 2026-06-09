@@ -29,13 +29,6 @@ void insert_last(struct no * lista, int info) {
     curr->prox = novo;
 }
 
-struct no * remove_first(struct no * lista) {
-    if (lista == NULL) return NULL; // lista vazia
-
-    struct no *novo_inicio = lista->prox;
-    return novo_inicio;
-}
-
 void print_list(struct no *lista) {
     struct no *curr = lista; //ponteiro auxiliar começa apontando pro primeiro nó da lista
 
@@ -46,7 +39,26 @@ void print_list(struct no *lista) {
     printf("\n");
 }
 
+struct no * remove_first(struct no * lista) {
+    if (lista == NULL) return NULL; // lista vazia
+
+    struct no *novo_inicio = lista->prox;
+    return novo_inicio;
+}
+
+struct no *remove_last(struct no *lista) {
+    if (lista == NULL) return NULL; // lista vazia
+
+    struct no *curr = lista; // começa no início
+    while (curr->prox->prox != NULL) { // vai até o penúltimo
+        curr = curr->prox;     // vai pro próximo
+    }
+    curr->prox = NULL;         // corta ligação
+    return lista;
+}
+
 struct no *remove_value(struct no *lista, int value) {
+    struct no *curr = lista;
 
     if (lista == NULL) // lista vazia
         return NULL;
@@ -57,10 +69,8 @@ struct no *remove_value(struct no *lista, int value) {
         return novo_inicio;
     }
 
-    struct no *curr = lista; // começa no início
-
     while (curr->prox != NULL && curr->prox->info != value) { // procura o nó antes do valor
-        curr = curr->prox;   // avança/vai para o próximo nó
+        curr = curr->prox;   // avança para o próximo nó
     }
 
     if (curr->prox != NULL) { // se encontrou o valor

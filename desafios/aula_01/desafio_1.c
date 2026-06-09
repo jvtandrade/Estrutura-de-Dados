@@ -29,6 +29,16 @@ void insert_last(struct no * lista, int info) {
     curr->prox = novo;
 }
 
+void print_list(struct no *lista) {
+    struct no *curr = lista; //ponteiro auxiliar começa apontando pro primeiro nó da lista
+
+    while (curr != NULL) { //enquanto ainda existir nó 
+        printf("%d ", curr->info); //imprime o valor do nó que foi armazenado no "info"
+        curr = curr->prox; //vai pro próximo nó
+    }
+    printf("\n");
+}
+
 struct no * remove_first(struct no * lista) {
     if (lista == NULL) return NULL; // lista vazia
 
@@ -36,21 +46,11 @@ struct no * remove_first(struct no * lista) {
     return novo_inicio;
 }
 
-void print_list(struct no *lista) {
-    struct no *curr = lista; //ponteiro auxiliar começa apontando pro primeiro nó da lista
-
-    while (curr != NULL) { //enquanto ainda existir nó ou enquanto o auxiliar foi diferente de nulo...
-        printf("%d ", curr->info); //imprime o valor do nó que foi armazenado no "info"
-        curr = curr->prox; //vai para o próximo nó
-    }
-    printf("\n");
-}
-
 int main() {
-    struct no *lista = novoNo(10); // cria o primeiro nó da lista com valor 10
-    lista -> prox = novoNo(20); // ligar um novo nó depois do primeiro
-    lista -> prox -> prox = novoNo(30); // ligar um novo nó depois do segundo
-
+    struct no *lista = novoNo(1); 
+    insert_last(lista, 2);
+    insert_last(lista, 3);
+    
     print_list(lista); //imprime todos os elementos da lista
     return 0;
 }

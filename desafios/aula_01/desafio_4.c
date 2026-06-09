@@ -29,13 +29,6 @@ void insert_last(struct no * lista, int info) {
     curr->prox = novo;
 }
 
-struct no * remove_first(struct no * lista) {
-    if (lista == NULL) return NULL; // lista vazia
-
-    struct no *novo_inicio = lista->prox;
-    return novo_inicio;
-}
-
 void print_list(struct no *lista) {
     struct no *curr = lista; //ponteiro auxiliar começa apontando pro primeiro nó da lista
 
@@ -45,6 +38,14 @@ void print_list(struct no *lista) {
     }
     printf("\n");
 }
+
+struct no * remove_first(struct no * lista) {
+    if (lista == NULL) return NULL; // lista vazia
+
+    struct no *novo_inicio = lista->prox;
+    return novo_inicio;
+}
+
 
 struct no *reverse_list(struct no *lista) {
 
